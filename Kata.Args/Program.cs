@@ -9,10 +9,12 @@ namespace Kata.Args
     {
         static void Main(string[] args)
         {
-            string args1 = "date -l -d test/ate -";
-            SchemaFactory factory = new SchemaFactory();
-            factory.GetSchema(args1);
-            var parser = new Parser(factory.GetSchema(args1), args1);
+            string args1 = "date -l -d test/ate -p";
+            SchemaTypeFactory factory = new SchemaTypeFactory();
+            ISchema schema = factory.GetSchema(args1);
+
+            SchemaServiceFactory schemaServiceFactory = new SchemaServiceFactory(schema, args1);
+            var service = schemaServiceFactory.CreateSchemaService(args1);
 
         }
     }

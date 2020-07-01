@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Kata.Args.Infrastructure.Interfaces
 {
-    public interface ISchemaFactory
+    public interface ISchemaTypeFactory
     {
     }
 }

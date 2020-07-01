@@ -22,10 +22,72 @@ namespace Kata.Args.Infrastructure
                 {
                     flagsList.Add(flagsChar[i + 1].ToString());
                 }
+                else if (flagsChar[i] == '-' && i == flagsChar.Length - 1)
+                {
+                    flagsList.Add("");
+                }
             }
 
             return flagsList;
+        }
 
+        public static Dictionary<string, string> GetInputFlagValues(string input)
+        {
+            List<string> flags = GetInputFlags(input);
+            List<int> flagsPosition = new List<int>();
+            foreach (string flag in flags)
+            {
+                flagsPosition.Add(input.IndexOf($"-{flag}"));
+            }
+
+            Dictionary<string, string> flagsAndValues = new Dictionary<string, string>();
+
+            for (int i = 0; i < flagsPosition.Count; i++)
+            {
+                int substringStartPosition = flagsPosition[i] + 1;
+
+                if (i != flagsPosition.Count - 1)
+                {
+
+                    int substringLength = flagsPosition[i + 1] - flagsPosition[i] - 1;
+
+                    string substring = input.Substring(
+                        substringStartPosition,
+                        substringLength
+                    );
+
+                    flagsAndValues.Add(
+                        substring[0].ToString(),
+                        substring
+                            .Substring(1, substring.Length - 2)
+                            .Trim()
+                    );
+                }
+                else
+                {
+                    string substring = input.Substring(
+                        substringStartPosition,
+                        input.ToCharArray().Length - flagsPosition[i] - 1
+                    );
+
+                    if (substring.Length == 1)
+                    {
+                        flagsAndValues.Add(
+                            substring[0].ToString(),
+                            ""
+                        );
+                    }
+                    else
+                    {
+                        flagsAndValues.Add(
+                            substring[0].ToString(),
+                            substring.Substring(1, substring.Length - 2)
+                                .Trim()
+                        );
+                    }
+                }
+            }
+            return flagsAndValues;
         }
     }
 }

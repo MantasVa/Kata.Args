@@ -2,14 +2,12 @@
 using Kata.Args.Schemas;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Text;
 
 namespace Kata.Args.Infrastructure.Factories
 {
-    public class SchemaFactory : ISchemaFactory
+    public class SchemaTypeFactory : ISchemaTypeFactory
     {
-
         public ISchema GetSchema(string args)
         {
             string commandType = StringParser.GetInputCommandType(args);

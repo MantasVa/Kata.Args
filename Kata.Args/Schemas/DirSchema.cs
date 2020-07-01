@@ -8,11 +8,11 @@ namespace Kata.Args.Schemas
     {
         public DirSchema()
         {
-            Schema = new Dictionary<string, Type>();
-            Schema.Add("l", typeof(void));
-            Schema.Add("p", typeof(int));
-            Schema.Add("d", typeof(string));
+            GetSchema = new Dictionary<string, Type>();
+            GetSchema.Add("l", typeof(void));
+            GetSchema.Add("p", typeof(int));
+            GetSchema.Add("d", typeof(string));
         }
-        public Dictionary<string, Type> Schema { get; protected set; }
+        public Dictionary<string, Type> GetSchema { get; protected set; }
     }
 }
