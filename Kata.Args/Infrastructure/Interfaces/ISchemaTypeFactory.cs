@@ -6,5 +6,6 @@ namespace Kata.Args.Infrastructure.Interfaces
 {
     public interface ISchemaTypeFactory
     {
+        public ISchema GetSchema(string args);
     }
 }

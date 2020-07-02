@@ -1,5 +1,7 @@
 ﻿using Kata.Args.Infrastructure.Factories;
+using Kata.Args.Infrastructure.Interfaces;
 using Kata.Args.Services;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Runtime.InteropServices;
 
@@ -9,13 +11,25 @@ namespace Kata.Args
     {
         static void Main(string[] args)
         {
-            string args1 = "date -l -d test/ate -p";
-            SchemaTypeFactory factory = new SchemaTypeFactory();
-            ISchema schema = factory.GetSchema(args1);
+            var serviceProvider = new ServiceCollection()
+                .AddSingleton<ISchemaTypeFactory, SchemaTypeFactory>()
+                .AddSingleton<ISchemaServiceFactory, SchemaServiceFactory>()
+                .BuildServiceProvider();
 
-            SchemaServiceFactory schemaServiceFactory = new SchemaServiceFactory(schema, args1);
-            var service = schemaServiceFactory.CreateSchemaService(args1);
 
+            Console.WriteLine("Enter Command: ");
+            string input = Console.ReadLine();
+
+            var schemaTypeFactory = serviceProvider.GetRequiredService<ISchemaTypeFactory>();
+            ISchema schema = schemaTypeFactory.GetSchema(input);
+
+            var schemaServiceFactory = serviceProvider.GetRequiredService<ISchemaServiceFactory>();
+            var service = schemaServiceFactory.CreateSchemaService(schema, input);
+
+            service.ExecuteCommand(input);
+
+
+            Console.ReadLine();
         }
     }
 }

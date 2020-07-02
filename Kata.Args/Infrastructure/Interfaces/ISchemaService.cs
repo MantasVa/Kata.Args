@@ -6,5 +6,6 @@ namespace Kata.Args.Infrastructure.Interfaces
 {
     public interface ISchemaService
     {
+        void ExecuteCommand(string input);
     }
 }

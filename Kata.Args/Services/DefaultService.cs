@@ -7,5 +7,9 @@ namespace Kata.Args.Services
 {
     public class DefaultService : ISchemaService
     {
+        public void ExecuteCommand(string input)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

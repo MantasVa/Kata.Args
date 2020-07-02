@@ -81,7 +81,7 @@ namespace Kata.Args.Infrastructure
                     {
                         flagsAndValues.Add(
                             substring[0].ToString(),
-                            substring.Substring(1, substring.Length - 2)
+                            substring.Substring(1, substring.Length - 1)
                                 .Trim()
                         );
                     }

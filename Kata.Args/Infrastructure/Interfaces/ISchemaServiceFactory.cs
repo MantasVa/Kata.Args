@@ -6,5 +6,6 @@ namespace Kata.Args.Infrastructure.Interfaces
 {
     public interface ISchemaServiceFactory
     {
+        ISchemaService CreateSchemaService(ISchema schema, string args);
     }
 }

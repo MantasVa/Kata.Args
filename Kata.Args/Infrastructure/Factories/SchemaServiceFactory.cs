@@ -9,14 +9,7 @@ namespace Kata.Args.Infrastructure.Factories
 {
     public class SchemaServiceFactory : ISchemaServiceFactory
     {
-        private readonly ISchema schema;
-        public SchemaServiceFactory(ISchema schema, string args)
-        {
-            this.schema = schema;
-            CheckSchemaFlags(args);
-        }
-
-        private bool CheckSchemaFlags(string args)
+        private bool CheckSchemaFlags(ISchema schema, string args)
         {
             var flagsList = StringParser.GetInputFlags(args);
             if (!StringValidator.CheckForRepeatingFlags(flagsList))
@@ -33,8 +26,12 @@ namespace Kata.Args.Infrastructure.Factories
             return true;
         }
 
-        public ISchemaService CreateSchemaService(string args)
+        public ISchemaService CreateSchemaService(ISchema schema, string args)
         {
+            if (!CheckSchemaFlags(schema, args))
+            {
+                throw new Exception();
+            }
             if (schema is DefaultSchema)
             {
                 return new DefaultService();

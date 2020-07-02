@@ -7,5 +7,9 @@ namespace Kata.Args.Services
 {
     public class DirService : ISchemaService
     {
+        public void ExecuteCommand(string input)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

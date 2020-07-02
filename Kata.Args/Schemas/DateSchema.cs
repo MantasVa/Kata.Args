@@ -9,9 +9,9 @@ namespace Kata.Args.Schemas
         public DateSchema()
         {
             GetSchema = new Dictionary<string, Type>();
-            GetSchema.Add("l", typeof(void));
-            GetSchema.Add("p", typeof(int));
-            GetSchema.Add("d", typeof(string));
+            GetSchema.Add("d", typeof(int));
+            GetSchema.Add("m", typeof(int));
+            GetSchema.Add("y", typeof(int));
         }
         public Dictionary<string, Type> GetSchema { get; protected set; }
     }
