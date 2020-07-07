@@ -11,7 +11,7 @@ namespace Kata.Args.Services
     public class DateService : ISchemaService
     {
         private DateTime datetime = DateTime.Now;
-        private Dictionary<string, Type> schema = new DateSchema().GetSchema;
+        private IDictionary<string, Type> schema = new DateSchema().GetSchema;
 
         public void ExecuteCommand(string input)
         {
@@ -35,11 +35,11 @@ namespace Kata.Args.Services
             Console.WriteLine(datetime);
         }
 
-        private Dictionary<string, int> ValidateFlagValues(string input)
+        private IDictionary<string, int> ValidateFlagValues(string input)
         {
-            Dictionary<string, string> commandsValues = StringParser.GetInputFlagValues(input);
+            IDictionary<string, string> commandsValues = StringParser.GetInputFlagValues(input);
 
-            Dictionary<string, int> parsedcommandValues = new Dictionary<string, int>();
+            IDictionary<string, int> parsedcommandValues = new Dictionary<string, int>();
             foreach (var command in commandsValues)
             {
                 Type commandType;

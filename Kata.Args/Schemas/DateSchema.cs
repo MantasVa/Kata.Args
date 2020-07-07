@@ -13,6 +13,6 @@ namespace Kata.Args.Schemas
             GetSchema.Add("m", typeof(int));
             GetSchema.Add("y", typeof(int));
         }
-        public Dictionary<string, Type> GetSchema { get; protected set; }
+        public IDictionary<string, Type> GetSchema { get; protected set; }
     }
 }

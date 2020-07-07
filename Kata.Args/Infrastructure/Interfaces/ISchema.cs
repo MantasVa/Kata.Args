@@ -5,6 +5,6 @@ namespace Kata.Args
 {
     public interface ISchema
     {
-        Dictionary<string, Type> GetSchema { get; }
+        IDictionary<string, Type> GetSchema { get; }
     }
 }
